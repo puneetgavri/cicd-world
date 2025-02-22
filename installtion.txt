@@ -1,0 +1,54 @@
+Install JAVA
+
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install -y fontconfig openjdk-17-jre openjdk-17-jdk
+sudo echo "JAVA_HOME=\"/usr/lib/jvm/java-17-openjdk-amd64\"" >> /etc/profile 
+sudo echo "PATH=\$JAVA_HOME/bin:\$PATH" >> /etc/profile
+source /etc/profile
+
+Install Maven
+
+cd /tmp ; sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+cd /tmp ; sudo tar -xzf apache-maven-3.9.6-bin.tar.gz -C  /opt/
+mv /opt/apache-maven-3.9.6 /opt/maven
+sudo echo "MAVEN_HOME=\"/opt/maven\"" >> /etc/profile
+sudo echo "PATH=\$MAVEN_HOME/bin:\$PATH" >> /etc/profile
+source /etc/profile
+
+mvn clean
+mvn compile
+mvn -P metrics pmd:pmd
+mvn test
+mvn verify
+mvn package
+
+
+Install Jenkins
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+
+sudo systemctl restart jenkins  # to restart 
+sudo systemctl stop jenkins     # to stop 
+sudo systemctl start jenkins    # to start 
+sudo systemctl status jenkins   # to check the status
+
+install pluggins:
+Warnings
+JaCoCo
+Coverage
+Pipeline stage view
+credentials
+ssh
+
+
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update -y
+sudo apt-get install trivy -y
+
