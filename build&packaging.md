@@ -1,3 +1,22 @@
+# What Are Build Tools?
+Build tools are software utilities that automate the process of transforming your source code into a runnable application or package. They help manage tasks such as compiling code, packaging binaries, running tests, managing dependencies, and sometimes deploying your application.
+
+## What Build Tools Typically Do:
+Compile source code (if applicable)
+
+Resolve and download dependencies/libraries
+
+Run tests (unit, integration)
+
+Package your application (e.g., create JAR, WAR, Docker image, ZIP)
+
+Generate documentation
+
+Perform static code analysis or linting
+
+Deploy or publish artifacts
+
+
 # Build and Packaging Tools for Various Languages
 
 ## Java
